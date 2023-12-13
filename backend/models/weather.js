@@ -1,9 +1,9 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/sequelize');
-const Profile = require('./profile');
-const Outfit = require('./outfit');
+import { DataTypes } from 'sequelize';
+import { define } from '../config/sequelize';
+import Profiles from './profiles';
+import Outfits from './outfits';
 
-const Weather = sequelize.define('Weather', {
+const Weather = define('Weather', {
   temperature: {
     type: DataTypes.FLOAT,
     allowNull: true,
@@ -23,7 +23,7 @@ const Weather = sequelize.define('Weather', {
   },
 });
 
-Weather.belongsTo(Profile, { foreignKey: 'profile_id' });
-Weather.belongsTo(Outfit, { foreignKey: 'outfit_id' });
+Weather.belongsTo(Profiles, { foreignKey: 'profile_id' });
+Weather.belongsTo(Outfits, { foreignKey: 'outfit_id' });
 
-module.exports = Weather;
+export default Weather;

@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/sequelize');
-const Outfit = require('./outfit');
+import { DataTypes } from 'sequelize';
+import { define, fn } from '../config/sequelize';
+import Outfits from './outfits';
 
-const Image = sequelize.define('Image', {
+const Images = define('Images', {
   url: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -15,9 +15,9 @@ const Image = sequelize.define('Image', {
   uploadTime: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: sequelize.fn('NOW'),
+    defaultValue: fn('NOW'),
   },
 });
 
-Image.belongsTo(Outfit, { foreignKey: 'outfit_id' }); // rename to outfit_id?
-module.exports = Image;
+Images.belongsTo(Outfits, { foreignKey: 'outfit_id' }); // rename to outfit_id?
+export default Images;
