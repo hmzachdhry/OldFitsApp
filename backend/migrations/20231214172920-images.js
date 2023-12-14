@@ -1,30 +1,31 @@
 'use strict';
-
 const { DataTypes, fn } = require('sequelize');
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Images', {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      password: {
+      url: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      email: {
+      description: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+        allowNull: true,
+      },
+      outfit_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Outfits',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -37,19 +38,8 @@ module.exports = {
         defaultValue: fn('NOW'),
       },
     });
-
-  //   await queryInterface.addColumn('Users', 'user_id', {
-  //     type: DataTypes.INTEGER,
-  //     references: {
-  //       model: 'Profiles',
-  //       key: 'id',
-  //     },
-  //     onUpdate: 'CASCADE',
-  //     onDelete: 'CASCADE',
-  //   });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeColumn('Users', 'user_id'); // Removes foreign key
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Images');
   },
 };
