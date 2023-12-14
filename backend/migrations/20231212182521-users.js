@@ -47,7 +47,7 @@ module.exports = {
   //     onUpdate: 'CASCADE',
   //     onDelete: 'CASCADE',
   //   });
-  // },
+  },
   async down(queryInterface, Sequelize) {
     await queryInterface.removeColumn('Users', 'user_id'); // Removes foreign key
     await queryInterface.dropTable('Users');
