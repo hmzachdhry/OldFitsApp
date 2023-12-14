@@ -12,12 +12,8 @@ const Images = define('Images', {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  uploadTime: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: fn('NOW'),
-  },
+
 });
 
-Images.belongsTo(Outfits, { foreignKey: 'outfit_id' }); // rename to outfit_id?
+Images.belongsTo(Outfits, { foreignKey: 'outfit_id' }); 
 export default Images;

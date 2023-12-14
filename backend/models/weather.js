@@ -16,11 +16,6 @@ const Weather = define('Weather', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-
-  timestamp: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
 });
 
 Weather.belongsTo(Profiles, { foreignKey: 'profile_id' });
