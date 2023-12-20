@@ -1,5 +1,35 @@
 const { Users, Profiles } = require('../models');
 
+// Creates user
+
+const createUser = async (req, res, next) => {
+  const { username, password, email, location, phone_number } = req.body;
+
+  try {
+    const newUser = await Users.create({
+      username,
+      password,
+      email,
+      location,
+      phone_number,
+    });
+
+    // Creates profile for the user
+
+    await Profiles.create({ user_id: newUser.id });
+    res.status(200).json(newUser);
+    return next();
+  } catch (err) {
+    return next({
+      log: `The following error occurred in the createUser controller: ${err}`,
+      status: 400,
+      message: {
+        err: 'An error occurred while trying to create a new user',
+      },
+    });
+  }
+};
+
 const getAllUsers = async (req, res, next) => {
   try {
     const allUsers = await Users.findAll({ include: Profiles });
@@ -40,4 +70,4 @@ const getUserById = async (req, res, next) => {
   }
 };
 
-module.exports = { getAllUsers, getUserById };
+module.exports = { createUser, getAllUsers, getUserById };
