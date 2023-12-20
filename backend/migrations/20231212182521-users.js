@@ -38,15 +38,15 @@ module.exports = {
       },
     });
 
-  //   await queryInterface.addColumn('Users', 'user_id', {
-  //     type: DataTypes.INTEGER,
-  //     references: {
-  //       model: 'Profiles',
-  //       key: 'id',
-  //     },
-  //     onUpdate: 'CASCADE',
-  //     onDelete: 'CASCADE',
-  //   });
+    //   await queryInterface.addColumn('Users', 'user_id', {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //       model: 'Profiles',
+    //       key: 'id',
+    //     },
+    //     onUpdate: 'CASCADE',
+    //     onDelete: 'CASCADE',
+    //   });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.removeColumn('Users', 'user_id'); // Removes foreign key
