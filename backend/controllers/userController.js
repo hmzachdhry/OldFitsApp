@@ -17,32 +17,27 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
-
 const getUserById = async (req, res, next) => {
-   
-        const { userId } = req.params;
-        try {
-            const user = await Users.findByPk(userId, {include: Profiles});
-            if (!user) {
-                return next({
-                    status: 404,
-                    message: { err: 'User not found' },
-                })
-            }
-            res.status(200).json(user);
-            return next()  
-        } catch (err) {
-            return next({
-              log: `The following error occurred in the getUserById controller: ${err}`,
-              status: 400,
-              message: {
-              err: 'An error occurred while trying to retrieve the user',
-              },
-            });
-        }
-        }
+  const { userId } = req.params;
+  try {
+    const user = await Users.findByPk(userId, { include: Profiles });
+    if (!user) {
+      return next({
+        status: 404,
+        message: { err: 'User not found' },
+      });
+    }
+    res.status(200).json(user);
+    return next();
+  } catch (err) {
+    return next({
+      log: `The following error occurred in the getUserById controller: ${err}`,
+      status: 400,
+      message: {
+        err: 'An error occurred while trying to retrieve the user',
+      },
+    });
+  }
+};
 
-
-
-
-module.exports = {getAllUsers, getUserById}
+module.exports = { getAllUsers, getUserById };
