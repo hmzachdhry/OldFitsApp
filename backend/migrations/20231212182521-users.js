@@ -5,7 +5,7 @@ const { DataTypes, fn } = require('sequelize');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Users',  {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -38,15 +38,15 @@ module.exports = {
       },
     });
 
-    //   await queryInterface.addColumn('Users', 'user_id', {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //       model: 'Profiles',
-    //       key: 'id',
-    //     },
-    //     onUpdate: 'CASCADE',
-    //     onDelete: 'CASCADE',
-    //   });
+      await queryInterface.addColumn('Users', 'user_id', {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Profiles',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.removeColumn('Users', 'user_id'); // Removes foreign key

@@ -13,12 +13,15 @@ const Outfits = define('Outfits', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  images: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   timestamp: {
     type: DataTypes.DATE,
     allowNull: false,
   },
 });
-
 
 Outfits.belongsTo(Profiles, { foreignKey: 'profile_id' }); // connected to Profile model
 Outfits.hasOne(Weather, { foreignKey: 'outfit_id' });
