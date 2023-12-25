@@ -49,7 +49,7 @@ const getAllUsers = async (req, res, next) => {
     });
   }
 };
-
+// Gets user user
 const getUserById = async (req, res, next) => {
   const { userId } = req.params;
   try {
@@ -72,5 +72,7 @@ const getUserById = async (req, res, next) => {
     });
   }
 };
+
+// Delete user
 
 module.exports = { createUser, getAllUsers, getUserById };
